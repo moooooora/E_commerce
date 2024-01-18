@@ -10,7 +10,7 @@ def image_upload(instance,file_name:str):
 class Product(models.Model):
 
     product_name = models.CharField(max_length=200,unique=True)
-    slug = models.SlugField(max_length=200,unique=True)
+    slug = models.SlugField(max_length=200,unique=True,blank=True,null=True)
     description = models.TextField()
     price = models.IntegerField()
     image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
