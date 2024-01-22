@@ -15,3 +15,6 @@
     -Category
     -created_at
     -modified_at    
+# Make Templates and urls
+# display category in templates
+# display products in shop templates (without Filter and pagination)   
