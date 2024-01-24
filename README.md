@@ -18,3 +18,5 @@
 # Make Templates and urls
 # display category in templates
 # display products in shop templates (without Filter and pagination)   
+# pagination 
+# filter
