@@ -3,13 +3,14 @@ from django.utils.text import slugify
 
 # Create your models here.
 def image_upload(instance,file_name:str):
-    extension = file_name.split('@')[1]
-    return f'{instance.category_name}.{extension}'
+    extension = file_name.split('.')[1]
+    
+    return f'category/{instance.category_name}.{extension}'
 class Category(models.Model):
     category_name = models.CharField(max_length=150)
     slug = models.SlugField(blank=True,null=True)
     description = models.TextField()
-    image = models.ImageField(upload_to=None)
+    image = models.ImageField(upload_to=image_upload)
 
     class Meta:
         verbose_name = ("Category")
