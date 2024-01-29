@@ -34,3 +34,18 @@ def store(request):
     }
     return render(request,'store/store.html',context)
 
+def product_detail(request,slug):
+    try:
+        product = Product.objects.get(slug=slug)
+        
+        
+    except Product.DoesNotExist:
+        pass
+
+    context = {
+        'product' :product,
+    }    
+
+    return render(request,'store/product_detail.html',context)
+
+
