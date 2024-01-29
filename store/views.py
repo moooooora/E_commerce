@@ -1,27 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Max,Min
+from category.models import Category
 from .models import Product
 from .filters import ProductFiilter
 # Create your views here.
 
-def store(request):
+def store(request,slug=None):
     
     # price = request.GET['hun']
     # products = Product.objects.all().filter()
     # my_filter = ProductFiilter(request.GET,queryset=products)
     # products = my_filter.qs
+    
     price_min = Product.objects.all().aggregate(Min('price'))
     price_max = Product.objects.all().aggregate(Max('price'))
-    FilterPrice = request.GET.get('FilterPrice')
-    if FilterPrice:
-        Int_FilterPrice = int(FilterPrice)
-        products = Product.objects.filter(price__lte = Int_FilterPrice,is_available=True)
+
+    if slug !=None:
+        category = get_object_or_404(Category,slug=slug)
+        products = Product.objects.filter(category=category,is_available=True)
+        products_count = products.count()
+        
     else:
         products = Product.objects.all().filter(is_available=True)
+        products_count = products.count()
     paginator = Paginator(products,6) 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+      
 
     print(price_min)
     print(price_max)
@@ -30,7 +36,7 @@ def store(request):
         # 'myfilter':my_filter,
         'price_min' : price_min,
         'price_max' : price_max,
-        'FilterPrice':FilterPrice,
+        'products_count' : products_count,
     }
     return render(request,'store/store.html',context)
 

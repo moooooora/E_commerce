@@ -4,8 +4,8 @@ app_name = 'store'
 urlpatterns = [
     
     path('',views.store,name='store'),
-    path('<str:slug>/',views.product_detail,name='product_detail'),
-    
+    path('<slug:slug>/',views.store,name='category_slug'),
+    # path('<str:slug>/',views.product_detail,name='product_detail'),
 
 ]
 
