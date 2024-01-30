@@ -25,3 +25,4 @@
 # context processors
 # filter by Category in home page
 # programming Nav Bar
+# product detail slug with category slug
