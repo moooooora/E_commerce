@@ -19,4 +19,9 @@
 # display category in templates
 # display products in shop templates (without Filter and pagination)   
 # pagination 
-# filter
+# product_detail
+# Filter Store (NOT DOne)
+# filter by category
+# context processors
+# filter by Category in home page
+# programming Nav Bar

@@ -40,13 +40,14 @@ def store(request,slug=None):
     }
     return render(request,'store/store.html',context)
 
-def product_detail(request,slug):
+def product_detail(request,slug,product_slug):
     try:
-        product = Product.objects.get(slug=slug)
+        category = get_object_or_404(Category,slug=slug)
+        product = Product.objects.get(category=category,slug=product_slug)
         
         
-    except Product.DoesNotExist:
-        pass
+    except Exception as e:
+        return e
 
     context = {
         'product' :product,
