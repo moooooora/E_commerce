@@ -26,3 +26,6 @@
 # filter by Category in home page
 # programming Nav Bar
 # product detail slug with category slug
+# Cart App & Cart Page Design
+# Cart & Cart items models
+ 
