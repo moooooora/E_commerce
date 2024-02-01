@@ -115,9 +115,9 @@
                         {% if product.stock <= 0  %}
                             <h3 class="font-weight-semi-bold mb-4">Out Of Stock </h3>
                         {% else %}
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
-                        {% endif %}    
+                        <a class="btn btn-primary px-3" href="{% url "cart:add_cart" product.id %}"><i class="fa fa-shopping-cart mr-1"></i>Add To Cart</a>
+                        {% endif %}
+                            
                     </div>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
