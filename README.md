@@ -30,3 +30,7 @@
 # Cart & Cart items models
 # make cart session
 # add cart to cart page
+# Functionality cart view for cart page
+# context processor for cart
+# added Coupon Function
+

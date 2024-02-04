@@ -2,6 +2,8 @@ from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Max,Min
 from category.models import Category
+from cart.views import _cart_id
+from cart.models import CartItem
 from .models import Product
 from .filters import ProductFiilter
 # Create your views here.
@@ -44,6 +46,7 @@ def product_detail(request,slug,product_slug):
     try:
         category = get_object_or_404(Category,slug=slug)
         product = Product.objects.get(category=category,slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=product).exists()
         
         
     except Exception as e:
@@ -51,8 +54,11 @@ def product_detail(request,slug,product_slug):
 
     context = {
         'product' :product,
+        'in_cart' :in_cart,
     }    
 
     return render(request,'store/product_detail.html',context)
 
+def love_page(request):
 
+    return render(request,'store/love.html')

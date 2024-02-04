@@ -13,7 +13,8 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
     
-
+    def sub_total(self):
+        return self.product.price * self.quantity
     class Meta:
         verbose_name = ("CartItem")
         verbose_name_plural = ("CartItems")
@@ -24,3 +25,19 @@ class CartItem(models.Model):
     # def get_absolute_url(self):
     #     return reverse("CartItem_detail", kwargs={"pk": self.pk})
     
+class Coupon(models.Model):
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+    ratio = models.FloatField()
+    published_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField()
+
+    class Meta:
+        verbose_name = ("Coupon")
+        verbose_name_plural = ("Coupones")
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("Coupo_detail", kwargs={"pk": self.pk})
