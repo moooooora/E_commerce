@@ -33,4 +33,5 @@
 # Functionality cart view for cart page
 # context processor for cart
 # added Coupon Function
+# Search Functions
 

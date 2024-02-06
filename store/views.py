@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
-from django.db.models import Max,Min
+from django.db.models import Max,Min,Q
 from category.models import Category
 from cart.views import _cart_id
 from cart.models import CartItem
@@ -24,7 +24,7 @@ def store(request,slug=None):
         products_count = products.count()
         
     else:
-        products = Product.objects.all().filter(is_available=True)
+        products = Product.objects.all().filter(is_available=True).order_by('id')
         products_count = products.count()
     paginator = Paginator(products,6) 
     page_number = request.GET.get("page")
@@ -62,3 +62,18 @@ def product_detail(request,slug,product_slug):
 def love_page(request):
 
     return render(request,'store/love.html')
+
+def search(request):
+    products = None
+    products_count = 0
+    if 'keywords' in request.GET:
+        keyword = request.GET['keywords']
+        if keyword:
+            products = Product.objects.order_by('-created_at').filter(Q(description__icontains=keyword)|Q(product_name__icontains=keyword) |Q(category__category_name__icontains=keyword))
+            products_count = products.count()
+    context = {
+       'products' : products ,
+       'products_count' : products_count,
+    }
+    return render(request,'store/search.html',context)
+
