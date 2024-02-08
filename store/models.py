@@ -36,3 +36,25 @@ class Product(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("Product_detail", kwargs={"pk": self.pk})
+
+class Offer(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    ratio = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True,)
+    modified_at = models.DateTimeField( auto_now=True)
+    is_active = models.BooleanField(default = True)
+    
+
+    class Meta:
+        verbose_name = ("Offer")
+        verbose_name_plural = ("Offers")
+    def final_price(self):
+        discount = (self.product.price * self.ratio)/100
+        new_price = self.product.price - discount
+        return new_price
+
+    def __str__(self):
+        return str(self.product)
+
+    
+

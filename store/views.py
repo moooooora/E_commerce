@@ -4,7 +4,7 @@ from django.db.models import Max,Min,Q
 from category.models import Category
 from cart.views import _cart_id
 from cart.models import CartItem
-from .models import Product
+from .models import Product,Offer
 from .filters import ProductFiilter
 # Create your views here.
 
@@ -14,7 +14,7 @@ def store(request,slug=None):
     # products = Product.objects.all().filter()
     # my_filter = ProductFiilter(request.GET,queryset=products)
     # products = my_filter.qs
-    
+    offers=Offer.objects.all().filter(is_active=True)
     price_min = Product.objects.all().aggregate(Min('price'))
     price_max = Product.objects.all().aggregate(Max('price'))
 
@@ -39,6 +39,7 @@ def store(request,slug=None):
         'price_min' : price_min,
         'price_max' : price_max,
         'products_count' : products_count,
+        'offers' : offers,
     }
     return render(request,'store/store.html',context)
 
@@ -76,4 +77,12 @@ def search(request):
        'products_count' : products_count,
     }
     return render(request,'store/search.html',context)
+
+def offers(request):
+    offers = Offer.objects.all().filter(is_active=True)
+
+    context = {
+        'offers':offers,
+    }
+    return render(request,'store/offers.html',context)
 
