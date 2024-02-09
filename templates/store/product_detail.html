@@ -44,9 +44,12 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    
+                    {% if offer %}
+                    <h3>${{offer.final_price}}</h3><h4 class="text-muted ml-2"><del>${{offer.product.price}}</del></h4>
+                    <h5>Save {{offer.ratio}}%</h5>
+                    {% else %}
                     <h3 class="font-weight-semi-bold mb-4">${{product.price}}</h3>
-                        
+                    {% endif %}   
                     <p class="mb-4">{{product.description}}</p>
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
@@ -99,19 +102,7 @@
                         </form>
                     </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
-                        <div class="input-group quantity mr-3" style="width: 130px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
+                 
                         {% if product.stock <= 0  %}
                             <h3 class="font-weight-semi-bold mb-4">Out Of Stock </h3>
                         {% else %}

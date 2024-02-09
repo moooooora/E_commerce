@@ -34,4 +34,5 @@
 # context processor for cart
 # added Coupon Function
 # Search Functions
+# Offer Model and show it in offers page
 

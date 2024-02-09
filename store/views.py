@@ -43,19 +43,24 @@ def store(request,slug=None):
     }
     return render(request,'store/store.html',context)
 
-def product_detail(request,slug,product_slug):
+def product_detail(request,slug,product_slug,offer=None):
     try:
+     
         category = get_object_or_404(Category,slug=slug)
         product = Product.objects.get(category=category,slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=product).exists()
+        offer = Offer.objects.get(product=product)
         
         
     except Exception as e:
-        return e
+        category = get_object_or_404(Category,slug=slug)
+        product = Product.objects.get(category=category,slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=product).exists()
 
     context = {
         'product' :product,
         'in_cart' :in_cart,
+        'offer' :offer,
     }    
 
     return render(request,'store/product_detail.html',context)
