@@ -4,7 +4,7 @@ from django.db.models import Max,Min,Q
 from category.models import Category
 from cart.views import _cart_id
 from cart.models import CartItem
-from .models import Product,Offer
+from .models import Product,Offer,Variation
 from .filters import ProductFiilter
 # Create your views here.
 
@@ -50,17 +50,20 @@ def product_detail(request,slug,product_slug,offer=None):
         product = Product.objects.get(category=category,slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=product).exists()
         offer = Offer.objects.get(product=product)
+
         
         
     except Exception as e:
         category = get_object_or_404(Category,slug=slug)
         product = Product.objects.get(category=category,slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request),product=product).exists()
-
+    
+   
     context = {
         'product' :product,
         'in_cart' :in_cart,
         'offer' :offer,
+
     }    
 
     return render(request,'store/product_detail.html',context)

@@ -35,4 +35,6 @@
 # added Coupon Function
 # Search Functions
 # Offer Model and show it in offers page
+# show Offer in product details
+# make Variations Model and added in add_cart functions
 
