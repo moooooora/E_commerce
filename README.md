@@ -37,4 +37,5 @@
 # Offer Model and show it in offers page
 # show Offer in product details
 # make Variations Model and added in add_cart functions
+# fix group of quantity for cart variations
 
