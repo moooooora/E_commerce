@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load bootstrap5 %}
+<html lang="en">
+
+{% block body %}
+<div class="col-lg-7 mb-5 mx-auto">
+    <div class="contact-form bg-light p-30">
+        <div class="registration form">
+            
+            <header>Signup</header>
+            <form  method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+            {% comment %} {{form}} {% endcomment %}
+            <button type="submit" class="btn btn-primary px-3" >Register</button>
+            </form>
+            <div class="signup">
+            <span class="signup">Already have an account?
+            <a href="#">Login</a>
+            </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}
+

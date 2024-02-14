@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_filters',
+    'django_filters','accounts',"bootstrap5",
     'category','store','cart',
     'django.contrib.admin',
     'django.contrib.auth',

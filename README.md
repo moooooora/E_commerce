@@ -39,3 +39,6 @@
 # make Variations Model and added in add_cart functions
 # fix group of quantity for cart variations
 
+# Regesteration urls and templates 
+# model of profile 
+# Functionality registeration by username
