@@ -42,3 +42,5 @@
 # Regesteration urls and templates 
 # model of profile 
 # Functionality registeration by username
+# finished reset Password
+

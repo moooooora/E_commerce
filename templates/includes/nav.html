@@ -42,6 +42,16 @@
                                     <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{items_count}}</span>
                                 </a>
                             </div>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url "accounts:profile" %}" class="nav-item nav-link">{{request.user}}</a>
+                                {% if profile.image %}
+                                <img src="{{profile.image.url}}" alt="" style="width:50px;height:50px; border-radius: 30%;">
+                                {% endif %}
+                                <a href="{% url "accounts:logout" %}" class="nav-item nav-link">Logout</a>
+                            {% else %}
+                            <a href="{% url "accounts:login" %}" class="nav-item nav-link">Login</a>
+                            <a href="{% url "accounts:register" %}" class="nav-item nav-link">Signup</a>
+                            {% endif %}
                         </div>
                     </nav>
                 </div>

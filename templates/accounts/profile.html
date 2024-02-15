@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block body %}
+
+<div class="col-lg-7 mb-5 mx-auto">
+    <div class="contact-form bg-light p-30">
+        <div class="registration form">
+            {% if profile.image %}
+            <div class="mx-auto">
+                <img src="{{profile.image.url}}" alt="" style="width:100px;height:100px;">
+
+            </div>
+            {% endif %}
+            
+            <header>Profile</header>
+            <form  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form userform %}
+                {% bootstrap_form profileform %}
+            {% comment %} {{form}} {% endcomment %}
+            <button type="submit" class="btn btn-primary px-3" >Submit</button>
+            </form>
+            <div class="signup">
+            
+            </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock body %}

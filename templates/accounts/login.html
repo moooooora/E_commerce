@@ -4,11 +4,12 @@
     <div class="contact-form bg-light p-30">
         <div class="login form">
             <header>Login</header>
-            <form action="#">
-            <input type="text" placeholder="Enter your email">
-            <input type="password" placeholder="Enter your password">
-            <a href="#">Forgot password?</a>
-            <input type="button" class="button" value="Login">
+            <form action="{% url "accounts:login" %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter your username" name="username">
+                <input type="password" placeholder="Enter your password" name="password">
+                <a href="{% url "accounts:forgetpassword" %}">Forgot password?</a>
+                <button type="submit" class="btn btn-primary" >Login</button>
             </form>
             <div class="signup">
             <span class="signup">Don't have an account?
